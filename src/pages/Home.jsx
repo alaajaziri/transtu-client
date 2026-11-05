@@ -8,6 +8,9 @@ import RouteArt from '../components/RouteArt';
 import SearchForm from '../components/SearchForm';
 import TripCard from '../components/TripCard';
 import Icon from '../components/Icons';
+import Reveal from '../components/fx/Reveal';
+import BlurText from '../reactbits/BlurText';
+import RotatingText from '../reactbits/RotatingText';
 import { Empty, ErrorBox, Skeletons } from '../components/ui';
 
 const STEPS = [
@@ -29,8 +32,22 @@ export default function Home() {
         <div className="container hero-grid">
           <div className="hero-copy stagger">
             <p className="eyebrow"><span className="dot" /> Transport public · Tunisie</p>
-            <h1>Votre trajet, <em>votre place</em>, réservés d'avance.</h1>
-            <p className="lead">Plus de file d'attente. Choisissez votre siège, recevez votre billet avec QR code et voyagez l'esprit tranquille.</p>
+            <h1>
+              <RotatingText
+                texts={['Réservez votre place.', 'Recevez votre billet.', 'Voyagez sans attendre.']}
+                highlight
+                highlightColor="#f8af26"
+              />
+            </h1>
+            <BlurText
+              className="lead"
+              text="Plus de file d'attente. Choisissez votre siège, recevez votre billet avec QR code et voyagez l'esprit tranquille."
+              animateBy="words"
+              delay={45}
+              stepDuration={0.3}
+              direction="bottom"
+              trigger="load"
+            />
             <div className="hero-cta">
               <Link to="/trips" className="btn btn-primary btn-lg">Voir les trajets <Icon name="arrow" size={18} /></Link>
               {!isAuthenticated && <Link to="/register" className="btn btn-lg">Créer un compte</Link>}
@@ -51,7 +68,7 @@ export default function Home() {
           {!loading && !error && upcoming.length === 0 && (
             <Empty title="Aucun trajet disponible pour le moment">Revenez un peu plus tard : les nouveaux départs apparaissent ici dès qu'ils sont programmés.</Empty>
           )}
-          <div className="trip-grid">{upcoming.map((t) => <TripCard key={t.id} trip={t} />)}</div>
+          <div className="trip-grid">{upcoming.map((t, i) => <Reveal key={t.id} delay={Math.min(i, 5) * 0.08}><TripCard trip={t} /></Reveal>)}</div>
         </div>
       </section>
 
@@ -59,10 +76,12 @@ export default function Home() {
         <div className="container">
           <header className="section-head"><div><p className="eyebrow">Comment ça marche</p><h2>Trois étapes, zéro file</h2></div></header>
           <ol className="steps">
-            {STEPS.map((s) => (
+            {STEPS.map((s, i) => (
               <li key={s.n}>
-                <span className="line-badge big">{s.n}</span>
-                <div><h3>{s.t}</h3><p>{s.d}</p></div>
+                <Reveal className="step" delay={i * 0.15} distance={50}>
+                  <span className="line-badge big">{s.n}</span>
+                  <div><h3>{s.t}</h3><p>{s.d}</p></div>
+                </Reveal>
               </li>
             ))}
           </ol>

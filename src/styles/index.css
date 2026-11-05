@@ -61,6 +61,10 @@ code { font-family: var(--f-mono); font-size: .9em; background: #0b163014; paddi
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 .stagger > * { animation: rise .6s cubic-bezier(.2, .7, .2, 1) both; }
 .stagger > *:nth-child(2) { animation-delay: .08s; } .stagger > *:nth-child(3) { animation-delay: .16s; } .stagger > *:nth-child(4) { animation-delay: .24s; }
+/* Wrappers React Bits (apparition au défilement) */
+.reveal { display: grid; min-width: 0; }
+.reveal > * { min-width: 0; }
+.step { display: flex; gap: 16px; align-items: flex-start; }
 
 .eyebrow { display: inline-flex; align-items: center; gap: 8px; font: 700 .78rem/1 var(--f-body); letter-spacing: .14em; text-transform: uppercase; color: var(--brand-d); margin-bottom: 10px; }
 .eyebrow.light { color: #eafff3; }

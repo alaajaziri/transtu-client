@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "predev": "node scripts/fetch-reactbits.mjs",
     "build": "vite build",
+    "prebuild": "node scripts/fetch-reactbits.mjs",
+    "reactbits": "node scripts/fetch-reactbits.mjs",
     "preview": "vite preview --host",
     "probe": "node scripts/probe-api.mjs",
     "server:install": "npm --prefix server install",
@@ -13,7 +16,9 @@
     "server:test": "npm --prefix server test"
   },
   "dependencies": {
+    "gsap": "^3.13.0",
     "jsqr": "^1.4.0",
+    "motion": "^12.23.12",
     "qrcode": "^1.5.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

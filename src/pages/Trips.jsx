@@ -5,6 +5,7 @@ import { tripService } from '../services/tripService';
 import { fmtLong, uniqueStations } from '../utils/format';
 import SearchForm from '../components/SearchForm';
 import TripCard from '../components/TripCard';
+import Reveal from '../components/fx/Reveal';
 import { Empty, ErrorBox, Skeletons } from '../components/ui';
 
 export default function Trips() {
@@ -38,7 +39,7 @@ export default function Trips() {
                 {filtered ? 'Essayez une autre date ou retirez un filtre.' : "Aucun trajet n'est programmé pour le moment."}
               </Empty>
             ) : (
-              <div className="trip-grid">{data.map((t) => <TripCard key={t.id} trip={t} />)}</div>
+              <div className="trip-grid">{data.map((t, i) => <Reveal key={t.id} delay={Math.min(i, 5) * 0.07}><TripCard trip={t} /></Reveal>)}</div>
             )}
           </>
         )}

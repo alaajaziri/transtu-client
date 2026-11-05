@@ -57,6 +57,19 @@ Le logo officiel doit se trouver dans `public/logo.png` (fond transparent, forma
 Palette (extraite du logo) : vert `#009751` (couleur principale), orange `#F8AF26` (accent : boutons, siège choisi), bleu `#0F66AD` (secondaire : lignes, aperçu mobile). Le rouge est réservé aux erreurs et annulations.
 Tout est dans les variables `:root` de `src/styles/index.css`.
 
+## Animations (React Bits)
+
+Les animations viennent de [React Bits](https://github.com/DavidHDev/react-bits) (licence MIT + Commons Clause : utilisation dans un site OK, revente des composants interdite). Les fichiers sont téléchargés tels quels, à un commit figé, dans `src/reactbits/` par `scripts/fetch-reactbits.mjs` — lancé automatiquement avant `npm run dev` / `npm run build` (ou à la main : `npm run reactbits`, besoin d'Internet la première fois).
+
+| Composant | Où |
+|---|---|
+| `ClickSpark` | étincelles au clic (`Layout.jsx`), désactivées dans l'espace chauffeur |
+| `BlurText` | phrase d'accroche de l'accueil |
+| `CountUp` | compteurs du tableau de bord |
+| `AnimatedContent` (via `components/fx/Reveal.jsx`) | cartes de trajets et étapes qui apparaissent au défilement |
+
+Tout est désactivé pour les personnes qui ont réglé leur système sur « réduire les animations ». Dépendances ajoutées : `motion`, `gsap`.
+
 ## Aperçu « Voir sur mobile »
 
 Bouton dans la barre du haut (ordinateur). Il ouvre l'application **réelle** dans une iframe aux dimensions d'un iPhone (15 Pro, 15 Pro Max, SE). Même session, même JWT, navigation interactive. « Quitter l'aperçu » (ou Échap) ramène à la page où vous étiez.

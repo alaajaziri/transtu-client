@@ -7,6 +7,7 @@ import { isCancelled, isUpcoming } from '../utils/format';
 import { isMissing } from '../services/http';
 import ReservationCard from '../components/ReservationCard';
 import Icon from '../components/Icons';
+import CountUp from '../reactbits/CountUp';
 import { BackendMissing, Empty, ErrorBox, Skeletons } from '../components/ui';
 import { ENDPOINTS } from '../config/endpoints';
 
@@ -43,10 +44,10 @@ export default function Dashboard() {
       {data && (
         <>
           <div className="stats">
-            <div className="stat"><b>{s.total}</b><span>Réservations</span></div>
-            <div className="stat accent"><b>{s.up.length}</b><span>À venir</span></div>
-            <div className="stat"><b>{s.past}</b><span>Voyages effectués</span></div>
-            <div className="stat"><b>{s.cancelled}</b><span>Annulées</span></div>
+            <div className="stat"><b><CountUp to={s.total} duration={1.2} /></b><span>Réservations</span></div>
+            <div className="stat accent"><b><CountUp to={s.up.length} duration={1.2} delay={0.1} /></b><span>À venir</span></div>
+            <div className="stat"><b><CountUp to={s.past} duration={1.2} delay={0.2} /></b><span>Voyages effectués</span></div>
+            <div className="stat"><b><CountUp to={s.cancelled} duration={1.2} delay={0.3} /></b><span>Annulées</span></div>
           </div>
 
           <div className="dash-grid">

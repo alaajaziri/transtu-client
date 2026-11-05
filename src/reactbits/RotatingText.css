@@ -1,0 +1,29 @@
+.rotating-text {
+  display: inline-flex;
+  position: relative;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.rotating-text-value {
+  display: inline-block;
+}
+
+.rotating-text-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.rotating-text-highlight {
+  padding: 0 0.1em;
+  color: var(--ink);
+  background: var(--rotating-highlight);
+  border-radius: 0.12em;
+}

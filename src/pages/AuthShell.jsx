@@ -1,4 +1,5 @@
 import RouteArt from '../components/RouteArt';
+import Logo from '../components/Logo';
 
 export default function AuthShell({ title, subtitle, children, aside }) {
   return (
@@ -6,6 +7,7 @@ export default function AuthShell({ title, subtitle, children, aside }) {
       <aside className="auth-brand">
         <RouteArt className="auth-art" />
         <div className="auth-brand-in">
+          <Logo size={52} light />
           <p className="eyebrow light">TRANSTU</p>
           <h2>{aside?.title || 'Voyagez sans attendre.'}</h2>
           <p>{aside?.text || 'Réservez votre siège, gardez votre billet dans votre poche.'}</p>
