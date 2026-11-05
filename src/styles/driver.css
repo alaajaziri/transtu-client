@@ -1,0 +1,54 @@
+/* ============ Interface chauffeur (utilise les variables de index.css) ============ */
+.drv-section { margin-bottom: 32px; }
+.drv-top-right { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.drv-counts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+.drv-counts .stat b { font-size: 2.4rem; }
+.drv-bar { margin-bottom: 22px; align-items: center; }
+
+/* scanner */
+.scanner { display: grid; gap: 14px; justify-items: center; }
+.scanner-view { position: relative; width: 100%; max-width: 420px; aspect-ratio: 1; border: 3px solid var(--ink); border-radius: 24px; background: var(--ink); overflow: hidden; box-shadow: 6px 6px 0 var(--blue); }
+.scanner-view video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: none; }
+.scanner-view.is-on video { display: block; }
+.scanner-idle { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 8px; color: #aab6d3; font-weight: 600; }
+.scanner-frame { position: absolute; inset: 14%; pointer-events: none; }
+.scanner-frame i { position: absolute; width: 34px; height: 34px; border: 4px solid var(--amber); }
+.scanner-frame i:nth-child(1) { top: 0; left: 0; border-right: 0; border-bottom: 0; border-top-left-radius: 10px; }
+.scanner-frame i:nth-child(2) { top: 0; right: 0; border-left: 0; border-bottom: 0; border-top-right-radius: 10px; }
+.scanner-frame i:nth-child(3) { bottom: 0; left: 0; border-right: 0; border-top: 0; border-bottom-left-radius: 10px; }
+.scanner-frame i:nth-child(4) { bottom: 0; right: 0; border-left: 0; border-top: 0; border-bottom-right-radius: 10px; }
+.scanner-busy { position: absolute; left: 0; right: 0; bottom: 0; padding: 10px; text-align: center; background: #0b1630cc; color: #fff; font-weight: 700; }
+
+/* résultat d'un scan : grand, lisible de loin */
+.scan-result { display: flex; gap: 14px; align-items: center; padding: 16px 18px; margin-top: 18px; border: 3px solid; border-radius: 20px; animation: drv-pop .3s ease both; }
+.scan-result.ok { background: #e4f6ee; border-color: var(--green); color: #0e5c3f; }
+.scan-result.ko { background: #fdecea; border-color: var(--red); color: #8f1d15; }
+.scan-ic { width: 54px; height: 54px; flex: none; border-radius: 50%; display: grid; place-items: center; color: #fff; border: 3px solid var(--ink); }
+.scan-result.ok .scan-ic { background: var(--green); }
+.scan-result.ko .scan-ic { background: var(--red); }
+.scan-result strong { display: block; font: 800 1.35rem/1.1 var(--f-display); }
+.scan-result p { margin: 3px 0 0; }
+.scan-who b { font: 800 1.25rem var(--f-display); }
+@keyframes drv-pop { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+
+.manual { display: flex; gap: 10px; margin-top: 18px; }
+.manual input { flex: 1; min-width: 0; padding: 12px 14px; border: 2px solid var(--ink); border-radius: 12px; background: #fff; font: 600 .95rem var(--f-mono); text-transform: uppercase; }
+.manual input::placeholder { text-transform: none; font-family: var(--f-body); font-weight: 500; color: var(--mute); }
+
+/* liste des passagers */
+.pax-list { display: grid; gap: 10px; }
+.pax { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; padding: 10px 12px; background: var(--card); border: 2px solid var(--ink); border-radius: 16px; }
+.pax.is-boarded { background: #e4f6ee; border-color: var(--green); }
+.pax-seat { min-width: 44px; height: 44px; padding: 0 8px; border-radius: 12px; background: var(--ink); color: var(--paper); display: grid; place-items: center; font: 800 1.1rem var(--f-display); }
+.pax.is-boarded .pax-seat { background: var(--green); color: #fff; }
+.pax-main { min-width: 0; display: grid; }
+.pax-main strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pax-main span { color: var(--mute); font-size: .82rem; }
+
+@media (max-width: 860px) {
+  .drv-counts { gap: 8px; }
+  .drv-counts .stat { padding: 12px 14px; border-radius: 16px; }
+  .drv-counts .stat b { font-size: 1.9rem; }
+  .manual { flex-wrap: wrap; }
+  .manual .btn { flex: 1; }
+}
